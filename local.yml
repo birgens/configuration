@@ -11,3 +11,4 @@
   - include: tasks/python.yml
   - include: tasks/cron.yml
   - include: tasks/users.yml
+  - include: tasks/directories.yml
