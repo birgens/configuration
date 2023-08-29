@@ -1,11 +1,11 @@
 - name: Create repository directory
   file:
-    path: ~/repos
+    path: /home/birgens/repos
     state: directory
     mode: '0755'
 
 - name: Create archive directory
   file:
-    path: ~/archive
+    path: /home/birgens/archive
     state: directory
     mode: '0755'
