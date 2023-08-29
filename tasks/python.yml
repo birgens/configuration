@@ -1,0 +1,9 @@
+- name: Install python
+  package: name=python
+
+- name: Install common packages
+  ansible.builtin.pip:
+    name:
+      - matplotlib
+      - numpy
+      - pandas
