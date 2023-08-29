@@ -7,12 +7,7 @@
       changed_when: False
   
   tasks:
-  - name: Install packages
-    package: name={{item}}
-    with_items:
-      - pandoc
-      - htop
-      - gnome-boxes
+  - include: tasks/packages.yml
 
   - name: create ansible user
     user: name=ansible uid=900
