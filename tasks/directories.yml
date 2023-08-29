@@ -1,6 +1,11 @@
-- name: Create directories if they do not exist
+- name: Create repository directory
   file:
-    path: ~/{{item}}
+    path: ~/repos
     state: directory
-    with_items:
-    - test_ansible
+    mode: '0755'
+
+- name: Create archive directory
+  file:
+    path: ~/archive
+    state: directory
+    mode: '0755'
