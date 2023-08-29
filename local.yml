@@ -8,13 +8,6 @@
   
   tasks:
   - include: tasks/packages.yml
-
-  - name: create ansible user
-    user: name=ansible uid=900
-
-  - name: copy sudoers_ansible
-    copy: src=files/sudoers_ansible dest=/etc/sudoers.d/ansible owner=root group=root mode=0440
-
-  - name: install cron job (ansible-pull)
-    cron: user="ansible" name="ansible provision" minute="*/10" job="/usr/bin/ansible-pull -o -U https://github.com/<github_user>/ansible.git > /dev/null"
   - include: tasks/python.yml
+  - include: cron.yml
+  - include: users.yml
