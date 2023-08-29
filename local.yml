@@ -2,8 +2,8 @@
   become: true
   tasks:
   - name: Install pandoc
-    package: name=pandoc
-  - name: Install htop
-    package: name=htop
-  - name: Install boxes
-    package: name=boxes
+    package: name={{item}}
+    with_items:
+      - pandoc
+      - htop
+      - gnome-boxes
