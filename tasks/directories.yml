@@ -1,0 +1,6 @@
+- name: Create directories if they do not exist
+  file:
+    path: ~/{{item}}
+    state: directory
+    with_items:
+    - test_ansible
