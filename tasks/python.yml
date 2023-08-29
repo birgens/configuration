@@ -1,5 +1,5 @@
 - name: Install python
-  package: name=python
+  package: name=python3
 
 - name: Install common packages
   ansible.builtin.pip:
