@@ -7,9 +7,15 @@
       changed_when: False
   
   tasks:
-  - name: Install pandoc
+  - name: Install packages
     package: name={{item}}
     with_items:
       - pandoc
       - htop
       - gnome-boxes
+
+  - name: create ansible user
+    user: name=ansible uid=900
+
+  - name: install cron job (ansible-pull)
+    cron: user="ansible" name="ansible provision" minute="*/10" job="/usr/bin/ansible-pull -o -U https://github.com/<github_user>/ansible.git > /dev/null"
