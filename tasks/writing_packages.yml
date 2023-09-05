@@ -4,4 +4,4 @@
     - pandoc
     - git
     - emacs
-    - {{ latex }}
+    - "{{ latex }}"
