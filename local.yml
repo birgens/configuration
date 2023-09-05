@@ -16,7 +16,3 @@
   - include_tasks: tasks/users.yml
   - include_tasks: tasks/cron.yml
   - include_tasks: tasks/directories.yml
-
-  - name: Print all available facts
-    ansible.builtin.debug:
-      var: ansible_facts
