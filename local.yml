@@ -7,7 +7,11 @@
       changed_when: False
   
   tasks:
+  - include_vars: vars/fedora_packages.yml
+      when: ansible_distribution == 'Fedora'
+  
   - include_tasks: tasks/packages.yml
+  - include_tasks: tasks/writing_packages.yml
   - include_tasks: tasks/python.yml
   - include_tasks: tasks/users.yml
   - include_tasks: tasks/cron.yml
