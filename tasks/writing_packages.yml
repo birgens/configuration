@@ -5,3 +5,8 @@
     - git
     - emacs
     - "{{ latex }}"
+    - pdf2svg
+    
+- name: Install flatpaks (Zotero)
+  community.general.flatpak:
+    name: org.zotero.Zotero
