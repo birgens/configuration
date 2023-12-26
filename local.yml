@@ -9,6 +9,8 @@
   tasks:
   - include_vars: vars/fedora_packages.yml
     when: ansible_distribution == 'Fedora'
+  - include_vars: vars/ubuntu_packages.yml
+    when: ansible_distribution == 'Ubuntu'
   
   - include_tasks: tasks/packages.yml
   - include_tasks: tasks/writing_packages.yml
