@@ -1,12 +1,42 @@
+- name: Add emacs repo into sources list
+  ansible.builtin.apt_repository:
+    repo: ppa:kelleyk/emacs
+
 - name: Install writing packages
-  package: name={{item}}
-  with_items:
+  package:
+    name: "{{item}}"
+  loop:
     - pandoc
-    - git
-    - emacs
+    - emacs28-nativecomp
     - "{{ latex }}"
     - pdf2svg
     
 - name: Install flatpaks (Zotero)
   community.general.flatpak:
     name: org.zotero.Zotero
+
+- name: Clone a github repository
+  git:
+    repo: https://github.com/doomemacs/doomemacs
+    dest: "{{ homedir }}/.config/emacs"
+    clone: yes
+    depth: 1
+    update: yes
+
+
+- name: Install Doom requirements
+  package:
+    name: "{{item}}"
+  loop:
+    - ripgrep
+    - fd-find
+
+- name: Install Doom Emacs
+  become: yes
+  become_user: "{{ user }}"
+  expect:
+    command: bash -c "{{ homedir }}/.config/emacs/bin/doom install"
+    timeout: 300
+    responses:
+       "Generate an envvar file?": "y\n"
+       "Download and install": "y\n"

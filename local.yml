@@ -1,18 +1,38 @@
 - hosts: localhost
-  become: true
 
-  pre_tasks:
-    - name: update repositories
-      package: update_cache=yes
-      changed_when: False
-  
   tasks:
+  - name: Ensure the system is up to date
+    become: true
+    apt:
+      update_cache: yes
+      upgrade: dist
+    when: ansible_os_family == "Debian"
+  - name: Ensure the system is up to date
+    become: true
+    dnf:
+      name: "*"
+      upgrade: latest
+    when: ansible_os_family == "RedHat"
+
+  - include_vars: vars/variables.yml
+
   - include_vars: vars/fedora_packages.yml
     when: ansible_distribution == 'Fedora'
-  
+  - include_vars: vars/ubuntu_packages.yml
+    when: ansible_distribution == 'Ubuntu'
+   
   - include_tasks: tasks/packages.yml
-  - include_tasks: tasks/writing_packages.yml
   - include_tasks: tasks/python.yml
   - include_tasks: tasks/users.yml
   - include_tasks: tasks/cron.yml
   - include_tasks: tasks/directories.yml
+
+  - include_tasks: tasks/fys1001_repos.yml
+
+  - name: Include tasks for astronomy
+    include_tasks: tasks/astro_packages.yml
+    tags: astronomy
+
+  - name: Include tasks for writing
+    include_tasks: tasks/writing_packages.yml
+    tags: writing

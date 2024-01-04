@@ -1,12 +1,10 @@
 - name: Install packages
   package: name={{item}}
   with_items:
-    - pandoc
     - htop
     - gnome-boxes
-    - git
-    - emacs
     - ffmpeg
     - calibre
     - mpv
     - vlc
+    - flatpak
