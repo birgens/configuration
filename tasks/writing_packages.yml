@@ -10,7 +10,14 @@
     - emacs28-nativecomp
     - "{{ latex }}"
     - pdf2svg
-    
+
+- name: Add the flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
+
 - name: Install flatpaks (Zotero)
   community.general.flatpak:
     name: org.zotero.Zotero
