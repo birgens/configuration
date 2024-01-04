@@ -1,10 +1,8 @@
 - name: Clone problems repository
   ansible.builtin.git:
-    repo: "git@github.com:uit-fys-1001/{{item}}.git"
+    repo: git@github.com:uit-fys-1001/problems.git
     dest: "{{ homedir }}/git-repos/uit-fys-1001/{{item}}"
     clone: yes
     update: yes
   loop:
     - problems
-    - figures
-    - content

@@ -1,5 +1,15 @@
+- name: Add indi repo into sources list
+  ansible.builtin.apt_repository:
+    repo: ppa:mutlaqja/ppa
+
+
 - name: Install packages
   package: name={{item}}
   with_items:
-    - kstars
+    - indi-full
+    - gsc
+    - kstars-bleeding
     - gimp
+    - astap
+    - siril
+    - saods9
