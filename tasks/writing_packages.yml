@@ -7,7 +7,7 @@
     name: "{{item}}"
   loop:
     - pandoc
-    - emacs28-nativecomp
+    - emacs29-nativecomp
     - "{{ latex }}"
     - pdf2svg
 
