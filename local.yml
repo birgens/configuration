@@ -28,6 +28,7 @@
   - include_tasks: tasks/directories.yml
 
   - include_tasks: tasks/fys1001_repos.yml
+  - include_tasks: tasks/geeqie.yml
 
   - name: Include tasks for astronomy
     include_tasks: tasks/astro_packages.yml

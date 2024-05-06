@@ -16,3 +16,10 @@
       - pandas
       - jupyter
       - seaborn
+
+- name: Install Novoid packages
+  ansible.builtin.pip:
+    name:
+      - move2archive
+      - filetags
+      - date2name

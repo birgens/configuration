@@ -1,0 +1,34 @@
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: ~/src/misc
+    state: directory
+    mode: '0755'
+
+- name: Create wrapper scripts for m2a
+  ansible.builtin.copy:
+    content: |
+      #!/bin/sh
+      /usr/bin/gnome-terminal --geometry=157x56+330+5 --hide-menubar -x m2a --archivepath ~/Archive--pauseonexit "${@}"
+      #end
+    dest: ~/src/misc/m2a-wrapper-with-gnome-terminal.sh
+
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: ~/.config/geeqie/applications
+    state: directory
+    mode: '0755'
+
+- name: Desktop entry for m2a
+  ansible.builtin.copy:
+    content: |
+      [Desktop Entry]
+      Name=m2a
+      GenericName=m2a
+      Exec=~/src/misc/m2a-wrapper-with-gnome-terminal.sh %F
+      Terminal=true
+      Type=Application
+      Categories=Application;Graphics;
+      hidden=false
+      MimeType=image/*;video/*;image/mpo;image/thm
+      Categories=X-Geeqie;
+    dest: ~/.config/geeqie/applications/m2a.desktop
